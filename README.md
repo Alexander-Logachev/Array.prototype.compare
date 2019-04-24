@@ -6,7 +6,7 @@ Regular - looking for the presence of all the elements in the array
 var a = [1,4,2,2];
 var b = [1,2,4];
 
-a.compare(b); //falce
+a.compare(b); //false
 ```
 
 
