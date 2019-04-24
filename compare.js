@@ -5,28 +5,30 @@ if (!Array.prototype.compare) {
      * @param strict - [true | false]
      * @returns {boolean}
      */
-    Array.prototype.compare = function (array, strict) {
-        _this = this;
-        if (_this.length != array.length) {
-            return false;
-        }
-        if (strict) {
-            for (var i in _this) {
-                if (_this.hasOwnProperty(i)) {
-                    if (_this[i] !== array[i]) {
-                        return false;
+    Object.defineProperty(Array.prototype, 'compare', {
+        value: function (array, strict) {
+            _this = this;
+            if (_this.length != array.length) {
+                return false;
+            }
+            if (strict) {
+                for (var i in _this) {
+                    if (_this.hasOwnProperty(i)) {
+                        if (_this[i] !== array[i]) {
+                            return false;
+                        }
+                    }
+                }
+            } else {
+                for (var i in _this) {
+                    if (_this.hasOwnProperty(i)) {
+                        if (array.indexOf(_this[i]) < 0) {
+                            return false;
+                        }
                     }
                 }
             }
-        } else {
-            for (var i in _this) {
-                if (_this.hasOwnProperty(i)) {
-                    if (array.indexOf(_this[i]) < 0) {
-                        return false;
-                    }
-                }
-            }
+            return true;
         }
-        return true;
-    }
+    });
 }
